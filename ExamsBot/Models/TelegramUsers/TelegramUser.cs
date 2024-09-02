@@ -2,7 +2,9 @@
 // FREE TO USE FOR THE WORLD
 // -------------------------------------------------------
 
+using ExamsBot.Models.Exams;
 using System;
+using System.Collections.Generic;
 
 namespace ExamsBot.Models.TelegramUsers
 {
@@ -14,6 +16,6 @@ namespace ExamsBot.Models.TelegramUsers
         public string PhoneNumber { get; set; }
         public TelegramUserStatus Status { get; set; }
         public Guid HelperId { get; set; }
-        public ICollection<Converter> Converts { get; set; }
+        public ICollection<Exam> Exams { get; set; }
     }
 }
