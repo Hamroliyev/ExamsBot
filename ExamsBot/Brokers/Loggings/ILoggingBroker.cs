@@ -2,6 +2,8 @@
 // FREE TO USE FOR THE WORLD
 // -------------------------------------------------------
 
+using System;
+
 namespace ExamsBot.Brokers.Loggings
 {
     public interface ILoggingBroker

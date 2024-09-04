@@ -2,6 +2,9 @@
 // FREE TO USE FOR THE WORLD
 // -------------------------------------------------------
 
+using Microsoft.Extensions.Logging;
+using System;
+
 namespace ExamsBot.Brokers.Loggings
 {
     public class LoggingBroker : ILoggingBroker
