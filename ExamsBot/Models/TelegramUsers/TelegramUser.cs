@@ -15,6 +15,7 @@ namespace ExamsBot.Models.TelegramUsers
         public string FirstName { get; set; }
         public string PhoneNumber { get; set; }
         public TelegramUserStatus Status { get; set; }
+        public Guid HelperId { get; set; }
         public ICollection<Exam> Exams { get; set; }
     }
 }
