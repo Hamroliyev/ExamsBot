@@ -22,17 +22,16 @@ namespace ExamsBot.Services.Foundations.TelegramUsers
         public async ValueTask<TelegramUser> DeleteTelegramUserAsync(TelegramUser telegramUser) =>
             await this.storageBroker.DeleteTelegramUserAsync(telegramUser);
 
-        public async ValueTask<TelegramUser> InsertTelegramUserAsync(TelegramUser telegramUser) =>
+        public async ValueTask<TelegramUser> AddTelegramUserAsync(TelegramUser telegramUser) =>
             await this.storageBroker.InsertTelegramUserAsync(telegramUser);
 
         public IQueryable<TelegramUser> RetriveAllTelegramUsers() => 
             this.storageBroker.SelectAllTelegramUsers();
 
-
         public async ValueTask<TelegramUser> RetriveTelegramUserByIdAsync(Guid telegramUserId) =>
             await this.storageBroker.SelectTelegramUserByIdAsync(telegramUserId);
 
-        public async ValueTask<TelegramUser> UpdateTelegramUserAsync(TelegramUser telegramUser) =>
+        public async ValueTask<TelegramUser> ModifyTelegramUserAsync(TelegramUser telegramUser) =>
             await this.storageBroker.UpdateTelegramUserAsync(telegramUser);
     }
 }

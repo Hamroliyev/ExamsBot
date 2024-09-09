@@ -11,10 +11,10 @@ namespace ExamsBot.Services.Foundations.TelegramUsers
 {
     public interface ITelegramUserService
     {
-        ValueTask<TelegramUser> InsertTelegramUserAsync(TelegramUser telegramUser);
+        ValueTask<TelegramUser> AddTelegramUserAsync(TelegramUser telegramUser);
         IQueryable<TelegramUser> RetriveAllTelegramUsers();
         ValueTask<TelegramUser> RetriveTelegramUserByIdAsync(Guid telegramUserId);
-        ValueTask<TelegramUser> UpdateTelegramUserAsync(TelegramUser telegramUser);
+        ValueTask<TelegramUser> ModifyTelegramUserAsync(TelegramUser telegramUser);
         ValueTask<TelegramUser> DeleteTelegramUserAsync(TelegramUser telegramUser);
     }
 }
