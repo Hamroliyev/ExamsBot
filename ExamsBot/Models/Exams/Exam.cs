@@ -2,17 +2,19 @@
 // FREE TO USE FOR THE WORLD
 // -------------------------------------------------------
 
-using ExamsBot.Models.TelegramUsers;
+using ExamsBot.Models.Results;
 using System;
+using System.Collections.Generic;
 
 namespace ExamsBot.Models.Exams
 {
     public class Exam
     {
-        public Guid Id { get; set; }
-        public int CountOfTests { get; set; }
-        public DateTime CreatedDate { get; set; } 
-        public Guid TelegramUserId { get; set; }
-        public TelegramUser TelegramUser { get; set; }
+        public Guid ExamId { get; set; }
+        public string ExamName { get; set; }
+        public int Duration { get; set; }
+        public string CorrectAnswers { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public ICollection<Result> Results { get; set; }
     }
 }
