@@ -3,6 +3,7 @@
 // -------------------------------------------------------
 
 using ExamsBot.Models.Exams;
+using ExamsBot.Models.Results;
 using System;
 using System.Collections.Generic;
 
@@ -16,6 +17,6 @@ namespace ExamsBot.Models.TelegramUsers
         public string PhoneNumber { get; set; }
         public TelegramUserStatus Status { get; set; }
         public Guid HelperId { get; set; }
-        public ICollection<Exam> Exams { get; set; }
+        public ICollection<Result> Results { get; set; }
     }
 }
