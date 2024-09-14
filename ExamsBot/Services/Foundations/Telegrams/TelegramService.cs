@@ -22,13 +22,16 @@ namespace ExamsBot.Services.Foundations.Telegrams
             this.telegramBroker = telegramBroker;
         }
 
-        public void RegisterTelegramEventHandler(Func<TelegramUserMessage, ValueTask> eventHandler)
+        public void RegisterTelegramEventHandler(
+            Func<TelegramUserMessage, ValueTask> eventHandler)
         {
             this.telegramBroker.RegisterTelegramEventHandler(async message =>
                 await ProcessTelegramTaskAsync(message, eventHandler));
         }
 
-        private async ValueTask ProcessTelegramTaskAsync(Update update, Func<TelegramUserMessage, ValueTask> eventHandler)
+        private async ValueTask ProcessTelegramTaskAsync(
+            Update update, 
+            Func<TelegramUserMessage, ValueTask> eventHandler)
         {
             if (update.Type == UpdateType.Message)
             {
@@ -36,7 +39,8 @@ namespace ExamsBot.Services.Foundations.Telegrams
                 {
                     Id = Guid.NewGuid(),
                     TelegramId = update.Message.From.Id,
-                    FirstName = update.Message.From.FirstName
+                    FirstName = update.Message.From.FirstName, 
+                    Status = TelegramUserStatus.Student
                 };
 
                 var telegramUserMessage = new TelegramUserMessage

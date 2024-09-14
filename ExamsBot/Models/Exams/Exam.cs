@@ -12,7 +12,7 @@ namespace ExamsBot.Models.Exams
     {
         public Guid ExamId { get; set; }
         public string ExamName { get; set; }
-        public int Duration { get; set; }
+        public DateTime Duration { get; set; }
         public string CorrectAnswers { get; set; }
         public DateTime CreatedDate { get; set; }
         public ICollection<Result> Results { get; set; }
