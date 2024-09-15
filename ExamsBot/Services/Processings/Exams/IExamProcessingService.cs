@@ -9,7 +9,7 @@ namespace ExamsBot.Services.Processings.Exams
 {
     public interface IExamProcessingService
     {
-        ValueTask<Exam> ModifyTelegramUserAsync(Exam exam);
-        ValueTask<Exam> UpsertTelegramUserProcessingService(Exam exam);
+        ValueTask<Exam> ModifyExamAsync(Exam exam);
+        ValueTask<Exam> UpsertExamProcessingService(Exam exam);
     }
 }
