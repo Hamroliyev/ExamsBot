@@ -18,10 +18,10 @@ namespace ExamsBot.Services.Processings.Exams
         {
             this.examService = examService;
         }
-        public async ValueTask<Exam> ModifyTelegramUserAsync(Exam exam) =>
+        public async ValueTask<Exam> ModifyExamAsync(Exam exam) =>
             await this.examService.ModifyExamAsync(exam);
 
-        public async ValueTask<Exam> UpsertTelegramUserProcessingService(Exam exam)
+        public async ValueTask<Exam> UpsertExamProcessingService(Exam exam)
         {
             Exam maybeExam = await examService.RetriveAllExams()
                 .FirstOrDefaultAsync(e => e.ExamId == exam.ExamId);
