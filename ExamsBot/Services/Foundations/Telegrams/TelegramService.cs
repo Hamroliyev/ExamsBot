@@ -39,7 +39,6 @@ namespace ExamsBot.Services.Foundations.Telegrams
                 {
                     Id = Guid.NewGuid(),
                     TelegramId = update.Message.From.Id,
-                    FirstName = update.Message.From.FirstName, 
                     Status = TelegramUserStatus.Student
                 };
 
