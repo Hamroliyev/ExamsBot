@@ -52,4 +52,6 @@ static void RegisterEventListeners(IApplicationBuilder app)
                 .ListenTelegramUserMessage();
 }
 
+
+
 app.Run();
