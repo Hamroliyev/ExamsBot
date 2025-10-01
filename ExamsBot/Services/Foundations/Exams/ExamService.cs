@@ -21,7 +21,7 @@ namespace ExamsBot.Services.Foundations.Exams
         public async ValueTask<Exam> AddExamAsync(Exam exam) =>
             await storageBroker.InsertExamAsync(exam);
 
-        public IQueryable<Exam> RetriveAllExams() =>
+        public IQueryable<Exam> RetrieveAllExams() =>
             storageBroker.SelectAllExams();
 
         public ValueTask<Exam> RetrieveExamByIdAsync(Guid examId) =>

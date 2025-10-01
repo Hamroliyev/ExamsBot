@@ -14,9 +14,15 @@ namespace ExamsBot.Models.TelegramUsers
         public Guid Id { get; set; }
         public long TelegramId { get; set; }
         public string FirstName { get; set; }
+        public string Username { get; set; }
         public string PhoneNumber { get; set; }
         public TelegramUserStatus Status { get; set; }
-        public Guid HelperId { get; set; }
-        public ICollection<Result> Results { get; set; }
+        public bool IsFullyRegistered { get; set; }
+        public DateTime RegisteredAt { get; set; }
+        public DateTime LastActive { get; set; }
+
+        // Navigation properties
+        public ICollection<Exam> CreatedExams { get; set; } // Exams created by teacher
+        public ICollection<Result> Results { get; set; } // Exam results as student
     }
 }

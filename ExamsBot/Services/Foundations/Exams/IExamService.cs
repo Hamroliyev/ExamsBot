@@ -12,7 +12,7 @@ namespace ExamsBot.Services.Foundations.Exams
     public interface IExamService
     {
         ValueTask<Exam> AddExamAsync(Exam exam);
-        IQueryable<Exam> RetriveAllExams();
+        IQueryable<Exam> RetrieveAllExams();
         ValueTask<Exam> RetrieveExamByIdAsync(Guid examId);
         ValueTask<Exam> ModifyExamAsync(Exam exam);
         ValueTask<Exam> RemoveExamAsync(Exam exam);

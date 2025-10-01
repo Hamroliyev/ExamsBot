@@ -3,13 +3,17 @@
 // -------------------------------------------------------
 
 using ExamsBot.Models.Exams;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ExamsBot.Services.Processings.Exams
 {
     public interface IExamProcessingService
     {
-        ValueTask<Exam> ModifyExamAsync(Exam exam);
-        ValueTask<Exam> UpsertExamProcessingService(Exam exam);
+        ValueTask<Exam> EndExamAsync(Guid examId);
+        IQueryable<Exam> RetrieveActiveExams();
+        IQueryable<Exam> RetrieveExamsByTeacherId(Guid teacherId);
+        ValueTask<Exam> UpsertExamAsync(Exam exam);
     }
 }
