@@ -14,8 +14,6 @@ namespace ExamsBot.Brokers.Storages
         ValueTask<Result> InsertResultAsync(Result result);
         IQueryable<Result> SelectAllResults();
         ValueTask<Result> SelectResultByIdAsync(Guid resultId);
-        IQueryable<Result> SelectResultsByExamIdAsync(Guid examId);
-        IQueryable<Result> SelectResultsByStudentIdAsync(Guid studentId);
         ValueTask<Result> UpdateResultAsync(Result result);
         ValueTask<Result> DeleteResultAsync(Result result);
     }

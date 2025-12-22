@@ -13,7 +13,8 @@ namespace ExamsBot.Brokers.Storages
     {
         ValueTask<TelegramUser> InsertTelegramUserAsync(TelegramUser telegramUser);
         IQueryable<TelegramUser> SelectAllTelegramUsers();
-        ValueTask<TelegramUser> SelectTelegramUserByIdAsync(Guid telegramUserId);
+        ValueTask<TelegramUser> SelectTelegramUserByIdAsync(Guid id);
+        ValueTask<TelegramUser> SelectTelegramUserByTelegramIdAsync(long telegramId);
         ValueTask<TelegramUser> UpdateTelegramUserAsync(TelegramUser telegramUser);
         ValueTask<TelegramUser> DeleteTelegramUserAsync(TelegramUser telegramUser);
     }
