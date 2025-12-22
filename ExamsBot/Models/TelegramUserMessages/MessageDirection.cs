@@ -2,11 +2,11 @@
 // FREE TO USE FOR THE WORLD
 // -------------------------------------------------------
 
-namespace ExamsBot.Models.TelegramUsers
+namespace ExamsBot.Models.TelegramUserMessages
 {
-    public enum TelegramUserStatus
+    public enum MessageDirection
     {
-        Teacher,
-        Student
+        Incoming = 0, // User -> Bot
+        Outgoing = 1  // Bot -> User
     }
 }

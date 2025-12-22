@@ -2,27 +2,68 @@
 // FREE TO USE FOR THE WORLD
 // -------------------------------------------------------
 
-using ExamsBot.Models.Exams;
-using ExamsBot.Models.Results;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using ExamsBot.Models.Assignments;
+using ExamsBot.Models.Exams;
+using ExamsBot.Models.Results;
+using ExamsBot.Models.TelegramUserMessages;
 
 namespace ExamsBot.Models.TelegramUsers
 {
     public class TelegramUser
     {
         public Guid Id { get; set; }
-        public long TelegramId { get; set; }
+
+        [Required]
+        public long TelegramId { get; set; } // Unique Telegram ID
+
+        [Required]
+        [MaxLength(100)]
         public string FirstName { get; set; }
-        public string Username { get; set; }
+
+        [MaxLength(100)]
+        public string LastName { get; set; }
+
+        [MaxLength(50)]
+        public string Username { get; set; } // @username
+
+        [Phone]
+        [MaxLength(20)]
         public string PhoneNumber { get; set; }
-        public TelegramUserStatus Status { get; set; }
+
+        // Computed full name
+        public string FullName => string.IsNullOrWhiteSpace(LastName)
+            ? FirstName
+            : $"{FirstName} {LastName}";
+
+        // Role: Student, Teacher, or Admin
+        [Required]
+        public TelegramUserRole Role { get; set; }
+
+        // Registration tracking
         public bool IsFullyRegistered { get; set; }
+        public RegistrationStep CurrentRegistrationStep { get; set; }
+        public bool IsActive { get; set; } = true;
+
+        // Timestamps
         public DateTime RegisteredAt { get; set; }
         public DateTime LastActive { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         // Navigation properties
-        public ICollection<Exam> CreatedExams { get; set; } // Exams created by teacher
-        public ICollection<Result> Results { get; set; } // Exam results as student
+        // If user is a Teacher - exams they created
+        public ICollection<Exam> CreatedExams { get; set; } = new List<Exam>();
+
+        // If user is a Student - their assignments
+        public ICollection<StudentAssignment> Assignments { get; set; } = new List<StudentAssignment>();
+
+        // If user is a Student - their results
+        public ICollection<Result> Results { get; set; } = new List<Result>();
+
+        // Messages for audit trail
+        public ICollection<TelegramUserMessage> Messages { get; set; } = new List<TelegramUserMessage>();
     }
 }
