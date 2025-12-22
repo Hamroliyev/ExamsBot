@@ -2,13 +2,12 @@
 // FREE TO USE FOR THE WORLD
 // -------------------------------------------------------
 
-namespace ExamsBot.Models.Students
+namespace ExamsBot.Models.TelegramUsers
 {
-    public enum Gender
+    public enum TelegramUserRole
     {
-        Female,
-        Male,
-        Other,
-        Unknown
+        Student = 0,
+        Teacher = 1,
+        Admin = 2
     }
 }
