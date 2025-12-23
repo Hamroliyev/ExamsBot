@@ -100,7 +100,7 @@ namespace ExamsBot.Brokers.Telegrams
             }
         }
 
-        private Task HandlePollingErrorAsync(
+        private static Task HandlePollingErrorAsync(
             ITelegramBotClient botClient,
             Exception exception,
             CancellationToken cancellationToken)

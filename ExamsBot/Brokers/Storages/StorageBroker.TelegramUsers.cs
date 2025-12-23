@@ -28,5 +28,11 @@ namespace ExamsBot.Brokers.Storages
 
         public async ValueTask<TelegramUser> DeleteTelegramUserAsync(TelegramUser telegramUser) =>
             await DeleteAsync(telegramUser);
+
+        public async ValueTask<TelegramUser> SelectTelegramUserByTelegramIdAsync(long telegramId) =>
+            await this.SelectAllTelegramUsers()
+                .Where(user => user.TelegramId == telegramId)
+                .AsNoTracking()
+                .FirstOrDefaultAsync();
     }
 }
