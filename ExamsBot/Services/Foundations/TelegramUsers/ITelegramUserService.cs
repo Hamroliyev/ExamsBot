@@ -12,9 +12,10 @@ namespace ExamsBot.Services.Foundations.TelegramUsers
     public interface ITelegramUserService
     {
         ValueTask<TelegramUser> AddTelegramUserAsync(TelegramUser telegramUser);
-        IQueryable<TelegramUser> RetriveAllTelegramUsers();
-        ValueTask<TelegramUser> RetriveTelegramUserByIdAsync(Guid telegramUserId);
+        IQueryable<TelegramUser> RetrieveAllTelegramUsers();
+        ValueTask<TelegramUser> RetrieveTelegramUserByIdAsync(Guid id);
+        ValueTask<TelegramUser> RetrieveTelegramUserByTelegramIdAsync(long telegramId);
         ValueTask<TelegramUser> ModifyTelegramUserAsync(TelegramUser telegramUser);
-        ValueTask<TelegramUser> DeleteTelegramUserAsync(TelegramUser telegramUser);
+        ValueTask<TelegramUser> RemoveTelegramUserAsync(TelegramUser telegramUser);
     }
 }
