@@ -4,6 +4,8 @@
 
 using System;
 using System.Collections.Generic;
+using ExamsBot.Models.StudentContacts;
+using ExamsBot.Models.TeacherContacts;
 using Newtonsoft.Json;
 
 namespace ExamsBot.Models.Contacts
@@ -25,8 +27,5 @@ namespace ExamsBot.Models.Contacts
 
         [JsonIgnore]
         public IEnumerable<TeacherContact> TeacherContacts { get; set; }
-
-        [JsonIgnore]
-        public IEnumerable<UserContact> UserContacts { get; set; }
     }
 }

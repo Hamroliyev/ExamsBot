@@ -4,6 +4,9 @@
 
 using System;
 using System.Collections.Generic;
+using ExamsBot.Models.StudentContacts;
+using ExamsBot.Models.StudentExams;
+using ExamsBot.Models.StudentRegistrations;
 using Newtonsoft.Json;
 
 namespace ExamsBot.Models.Students

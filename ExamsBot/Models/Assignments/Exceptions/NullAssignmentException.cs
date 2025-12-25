@@ -4,6 +4,7 @@
 // ---------------------------------------------------------------
 
 using System;
+using Xeptions;
 
 namespace ExamsBot.Models.Assignments.Exceptions
 {

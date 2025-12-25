@@ -6,7 +6,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using ExamsBot.Models;
+using ExamsBot.Models.StudentExams;
+using ExamsBot.Models.TeacherContacts;
 
 namespace ExamsBot.Models.Teachers
 {

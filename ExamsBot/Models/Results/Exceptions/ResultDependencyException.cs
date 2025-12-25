@@ -2,6 +2,7 @@
 // FREE TO USE FOR THE WORLD
 // -------------------------------------------------------
 
+using System;
 using Xeptions;
 
 namespace ExamsBot.Models.Results.Exceptions

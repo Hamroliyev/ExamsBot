@@ -35,9 +35,6 @@ namespace ExamsBot.Models.Users
         public UserStatus Status { get; set; }
         public DateTimeOffset CreatedDate { get; set; }
         public DateTimeOffset UpdatedDate { get; set; }
-
-        [JsonIgnore]
-        public IEnumerable<UserContact> UserContacts { get; set; }
         [JsonIgnore]
         public IEnumerable<Registration> RegistrationsCreatedByUser { get; set; }
         [JsonIgnore]
