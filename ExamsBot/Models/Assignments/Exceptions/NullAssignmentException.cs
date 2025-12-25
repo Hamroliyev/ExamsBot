@@ -7,8 +7,10 @@ using System;
 
 namespace ExamsBot.Models.Assignments.Exceptions
 {
-    public class NullAssignmentException : Exception
+    public class NullAssignmentException : Xeption
     {
-        public NullAssignmentException() : base(message: "The assignment is null.") { }
+        public NullAssignmentException() 
+            : base(message: "The assignment is null.") 
+        { }
     }
 }

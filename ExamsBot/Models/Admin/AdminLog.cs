@@ -11,7 +11,7 @@ namespace ExamsBot.Models.Admin
 {
     public class AdminLog
     {
-        public Guid Id { get; set; }
+        public Guid AdminLogId { get; set; }
 
         [Required]
         public Guid AdminId { get; set; }
@@ -27,11 +27,14 @@ namespace ExamsBot.Models.Admin
         public Guid? AffectedUserId { get; set; }
         public Guid? AffectedExamId { get; set; }
 
-        // Additional details (JSON)
+        // Additional details (JSON format)
+        // Note: Store as JSON string, validate and parse in service layer
         [MaxLength(2000)]
         public string Details { get; set; }
 
+        // Audit timestamps
         public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         // Navigation
         [ForeignKey(nameof(AdminId))]

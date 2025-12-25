@@ -14,7 +14,7 @@ namespace ExamsBot.Models.TelegramUsers
     /// </summary>
     public class ParentStudentRelationship
     {
-        public Guid Id { get; set; }
+        public Guid ParentStudentRelationshipId { get; set; }
 
         [Required]
         public Guid ParentId { get; set; } // TelegramUser with Parent role

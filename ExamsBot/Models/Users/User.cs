@@ -4,6 +4,7 @@
 
 using System;
 using System.Collections.Generic;
+using ExamsBot.Models.Registrations;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 

@@ -17,7 +17,7 @@ namespace ExamsBot.Models.Results
     /// </summary>
     public class SubmissionAttempt
     {
-        public Guid AttemptId { get; set; }
+        public Guid SubmissionAttemptId { get; set; }
 
         [Required]
         public Guid AssignmentId { get; set; }
@@ -65,6 +65,7 @@ namespace ExamsBot.Models.Results
 
         // Detailed answer breakdown (JSON format)
         // [{"q":1,"student":"a","correct":"b","isCorrect":false}, ...]
+        // Note: Store as JSON string, validate and parse in service layer
         [MaxLength(2000)]
         public string AnswerDetails { get; set; }
 
@@ -73,6 +74,7 @@ namespace ExamsBot.Models.Results
 
         // Audit timestamps
         public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         // Navigation properties
         [ForeignKey(nameof(AssignmentId))]

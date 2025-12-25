@@ -7,9 +7,10 @@ using System;
 
 namespace ExamsBot.Models.Assignments.Exceptions
 {
-    public class AlreadyExistsAssignmentException : Exception
+    public class AlreadyExistsAssignmentException : Xeption
     {
         public AlreadyExistsAssignmentException(Exception innerException)
-            : base(message: "Assignment with the same id already exists.", innerException) { }
+            : base(message: "Assignment with the same id already exists.", innerException) 
+        { }
     }
 }

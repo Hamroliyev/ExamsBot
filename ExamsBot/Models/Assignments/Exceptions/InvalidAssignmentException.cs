@@ -7,15 +7,12 @@ using Xeptions;
 
 namespace ExamsBot.Models.Assignments.Exceptions
 {
-    public class InvalidAssignmentException : Xeption
+    public class InvalidAssignmentException : Exception
     {
         public InvalidAssignmentException(string parameterName, object parameterValue)
             : base(message: $"Invalid assignment, " +
                   $"parameter name: {parameterName}, " +
                   $"parameter value: {parameterValue}.")
         { }
-
-        public InvalidAssignmentException()
-            : base(message: "Invalid assignment. Please fix the errors and try again.") { }
     }
 }

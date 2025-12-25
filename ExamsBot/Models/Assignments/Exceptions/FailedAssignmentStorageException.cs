@@ -4,13 +4,15 @@
 // ---------------------------------------------------------------
 
 using System;
+using Xeptions;
 
 namespace ExamsBot.Models.Assignments.Exceptions
 {
-    public class AssignmentServiceException : Xeption
+    public class FailedAssignmentStorageException : Xeption
     {
-        public AssignmentServiceException(Exception innerException)
-            : base(message: "Service error occurred, contact support.", innerException) 
+        public FailedAssignmentStorageException(Exception innerException)
+            : base(message: "Failed assignment storage error occurred, please contact support.", innerException)
         { }
     }
 }
+

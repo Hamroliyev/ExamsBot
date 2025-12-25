@@ -53,7 +53,10 @@ namespace ExamsBot.Services.Foundations.TelegramUsers
             TryCatch(async () =>
             {
                 ValidateTelegramId(telegramId);
-                TelegramUser storageTelegramUser = await this.storageBroker.SelectTelegramUserByTelegramIdAsync(telegramId);
+                TelegramUser storageTelegramUser = await this.storageBroker
+                    .SelectTelegramUsersByTelegramId(telegramId)
+                    .Where(user => user.TelegramId == telegramId)
+                    .FirstOrDefaultAsync();
                 ValidateStorageTelegramUserByTelegramId(storageTelegramUser, telegramId);
 
                 return storageTelegramUser;

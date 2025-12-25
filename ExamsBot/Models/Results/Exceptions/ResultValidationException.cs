@@ -8,7 +8,8 @@ namespace ExamsBot.Models.Results.Exceptions
 {
     public class ResultValidationException : Xeption
     {
-        public ResultValidationException(Xeption innerException)
-            : base(message: "Result validation error occurred, fix the errors and try again.", innerException) { }
+        public ResultValidationException(Exception innerException)
+            : base(message: "Result validation error occurred, fix the errors and try again.", innerException) 
+        { }
     }
 }

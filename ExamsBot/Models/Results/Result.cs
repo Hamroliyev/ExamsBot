@@ -66,6 +66,7 @@ namespace ExamsBot.Models.Results
 
         // Detailed answer breakdown (JSON format) - from best attempt
         // [{"q":1,"student":"a","correct":"b","isCorrect":false}, ...]
+        // Note: Store as JSON string, validate and parse in service layer
         [MaxLength(2000)]
         public string AnswerDetails { get; set; }
 

@@ -11,7 +11,7 @@ namespace ExamsBot.Models.Notifications
 {
     public class Notification
     {
-        public Guid Id { get; set; }
+        public Guid NotificationId { get; set; }
 
         [Required]
         public Guid RecipientId { get; set; }
@@ -39,7 +39,9 @@ namespace ExamsBot.Models.Notifications
         public Guid? RelatedAssignmentId { get; set; }
         public Guid? RelatedResultId { get; set; }
 
+        // Audit timestamps
         public DateTime CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         // Navigation
         [ForeignKey(nameof(RecipientId))]

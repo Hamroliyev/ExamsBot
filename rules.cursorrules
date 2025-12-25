@@ -1,0 +1,6 @@
+You are an expert C# developer following "The Standard" architecture.
+- Always use 'Xeptions' for error handling.
+- Foundations services must have: .cs, .Interfaces.cs, .Validations.cs, and .Exceptions.cs.
+- Models must use Guids for IDs and include DataAnnotation attributes.
+- Brokers must be partial classes and use IQueryable for 'SelectAll' methods.
+- Every exception must be wrapped: Validation -> Dependency -> Service.

@@ -24,10 +24,10 @@ namespace ExamsBot.Brokers.Storages
             await SelectAsync<Result>(resultId);
 
         public IQueryable<Result> SelectResultsByExamIdAsync(Guid examId) =>
-            SelectAll<Result>().Where(r => r.ExamId == examId);
+            SelectAll<Result>();
 
         public IQueryable<Result> SelectResultsByStudentIdAsync(Guid studentId) =>
-            SelectAll<Result>().Where(r => r.StudentId == studentId);
+            SelectAll<Result>();
 
         public async ValueTask<Result> UpdateResultAsync(Result result) =>
             await UpdateAsync(result);

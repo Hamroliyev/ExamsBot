@@ -7,9 +7,10 @@ using System;
 
 namespace ExamsBot.Models.Assignments.Exceptions
 {
-    public class LockedAssignmentException : Exception
+    public class LockedAssignmentException : Xeption
     {
         public LockedAssignmentException(Exception innerException)
-            : base(message: "Locked assignment record exception, please try again later.", innerException) { }
+            : base(message: "Locked assignment record exception, please try again later.", innerException) 
+        { }
     }
 }

@@ -84,19 +84,9 @@ namespace ExamsBot.Brokers.Telegrams
             Update update,
             CancellationToken cancellationToken)
         {
-            if (this.eventHandler is null)
-            {
-                LogWarning("Event handler is not registered. Update will be ignored.");
-                return;
-            }
-
-            try
+            if (this.eventHandler is not null)
             {
                 await this.eventHandler(update);
-            }
-            catch (Exception exception)
-            {
-                LogError($"Error in event handler: {exception.Message}");
             }
         }
 
@@ -105,19 +95,9 @@ namespace ExamsBot.Brokers.Telegrams
             Exception exception,
             CancellationToken cancellationToken)
         {
-            string errorMessage = exception switch
-            {
-                ApiRequestException apiRequestException =>
-                    $"Telegram API Error:\n" +
-                    $"[{apiRequestException.ErrorCode}]\n" +
-                    $"{apiRequestException.Message}",
-
-                _ => $"Polling Error: {exception.Message}"
-            };
-
-            LogError(errorMessage);
-
-            return Task.CompletedTask;
+            // Let exception bubble up - do not catch or handle
+            // Exception handling should be in service layer
+            return Task.FromException(exception);
         }
 
         private static void ValidateMessage(string message)

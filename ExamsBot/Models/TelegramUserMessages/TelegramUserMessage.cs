@@ -11,7 +11,7 @@ namespace ExamsBot.Models.TelegramUserMessages
 {
     public class TelegramUserMessage
     {
-        public Guid Id { get; set; }
+        public Guid TelegramUserMessageId { get; set; }
 
         [Required]
         public Guid TelegramUserId { get; set; }

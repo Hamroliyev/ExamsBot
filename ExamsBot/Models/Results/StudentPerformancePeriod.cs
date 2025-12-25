@@ -15,7 +15,7 @@ namespace ExamsBot.Models.Results
     /// </summary>
     public class StudentPerformancePeriod
     {
-        public Guid Id { get; set; }
+        public Guid StudentPerformancePeriodId { get; set; }
 
         [Required]
         public Guid StudentId { get; set; }

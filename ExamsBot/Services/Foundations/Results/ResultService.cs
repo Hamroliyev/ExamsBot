@@ -50,11 +50,11 @@ namespace ExamsBot.Services.Foundations.Results
             });
 
         public IQueryable<Result> RetrieveResultsByExamIdAsync(Guid examId) =>
-            TryCatch(() => this.storageBroker.SelectAllResults()
+            TryCatch(() => this.storageBroker.SelectResultsByExamIdAsync(examId)
                 .Where(result => result.ExamId == examId));
 
         public IQueryable<Result> RetrieveResultsByStudentIdAsync(Guid studentId) =>
-            TryCatch(() => this.storageBroker.SelectAllResults()
+            TryCatch(() => this.storageBroker.SelectResultsByStudentIdAsync(studentId)
                 .Where(result => result.StudentId == studentId));
 
         public ValueTask<Result> ModifyResultAsync(Result result) =>

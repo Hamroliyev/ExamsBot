@@ -7,9 +7,10 @@ using System;
 
 namespace ExamsBot.Models.Assignments.Exceptions
 {
-    public class NotFoundAssignmentException : Exception
+    public class NotFoundAssignmentException : Xeption
     {
         public NotFoundAssignmentException(Guid assignmentId)
-            : base(message: $"Couldn't find assignment with id: {assignmentId}.") { }
+            : base(message: $"Couldn't find assignment with id: {assignmentId}.") 
+        { }
     }
 }

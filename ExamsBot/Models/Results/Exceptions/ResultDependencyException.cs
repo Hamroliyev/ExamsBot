@@ -8,7 +8,8 @@ namespace ExamsBot.Models.Results.Exceptions
 {
     public class ResultDependencyException : Xeption
     {
-        public ResultDependencyException(Xeption innerException)
-            : base(message: "Result dependency error occurred, contact support.", innerException) { }
+        public ResultDependencyException(Exception innerException)
+            : base(message: "Result dependency error occurred, contact support.", innerException) 
+        { }
     }
 }

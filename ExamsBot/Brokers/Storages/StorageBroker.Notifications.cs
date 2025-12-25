@@ -3,10 +3,10 @@
 // -------------------------------------------------------
 
 using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using ExamsBot.Models.Notifications;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExamsBot.Brokers.Storages
 {

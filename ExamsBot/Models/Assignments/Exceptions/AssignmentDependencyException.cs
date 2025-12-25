@@ -7,9 +7,10 @@ using System;
 
 namespace ExamsBot.Models.Assignments.Exceptions
 {
-    public class AssignmentDependencyException : Exception
+    public class AssignmentDependencyException : Xeption
     {
         public AssignmentDependencyException(Exception innerException)
-            : base(message: "Service dependency error occurred, contact support.", innerException) { }
+            : base(message: "Service dependency error occurred, contact support.", innerException) 
+        { }
     }
 }
