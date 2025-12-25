@@ -65,5 +65,14 @@ namespace ExamsBot.Models.TelegramUsers
 
         // Messages for audit trail
         public ICollection<TelegramUserMessage> Messages { get; set; } = new List<TelegramUserMessage>();
+
+        // If user is a Parent - their children relationships
+        public ICollection<ParentStudentRelationship> ParentRelationships { get; set; } = new List<ParentStudentRelationship>();
+
+        // If user is a Student - parent relationships
+        public ICollection<ParentStudentRelationship> StudentRelationships { get; set; } = new List<ParentStudentRelationship>();
+
+        // If user is a Teacher - performance periods they can view
+        public ICollection<StudentPerformancePeriod> ViewablePerformancePeriods { get; set; } = new List<StudentPerformancePeriod>();
     }
 }

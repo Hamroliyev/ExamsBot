@@ -3,6 +3,7 @@
 // -------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using ExamsBot.Models.Exams;
@@ -31,11 +32,19 @@ namespace ExamsBot.Models.Assignments
         // Assignment status
         public AssignmentStatus Status { get; set; } = AssignmentStatus.Assigned;
 
+        // Test key for this assignment (student uses this to submit)
+        [MaxLength(50)]
+        public string TestKey { get; set; } // Key given by teacher to student
+
+        // Attempt tracking
+        public int AttemptsUsed { get; set; } = 0; // How many attempts student has made (0-3)
+        public int MaxAttemptsAllowed { get; set; } = 3; // Max attempts (from exam or override)
+
         // Timestamps
         public DateTime AssignedAt { get; set; }
-        public DateTime? StartedAt { get; set; }      // When student started
-        public DateTime? SubmittedAt { get; set; }    // When student submitted
-        public DateTime? CompletedAt { get; set; }    // When graded
+        public DateTime? StartedAt { get; set; }      // When student started first attempt
+        public DateTime? SubmittedAt { get; set; }    // When student submitted last attempt
+        public DateTime? CompletedAt { get; set; }    // When graded (all attempts processed)
 
         // Optional: Student-specific deadline (overrides exam deadline)
         public DateTime? CustomDeadline { get; set; }
@@ -59,6 +68,10 @@ namespace ExamsBot.Models.Assignments
         public TelegramUser AssignedByTeacher { get; set; }
 
         // The result for this assignment (one-to-one)
+        // Contains moderated score from all attempts
         public Result Result { get; set; }
+
+        // All submission attempts (up to 3)
+        public ICollection<SubmissionAttempt> SubmissionAttempts { get; set; } = new List<SubmissionAttempt>();
     }
 }

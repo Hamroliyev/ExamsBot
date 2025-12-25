@@ -6,12 +6,13 @@ namespace ExamsBot.Models.Notifications
 {
     public enum NotificationType
     {
-        AssignmentReceived = 0,  // Student: You have new homework
-        AssignmentReminder = 1,  // Student: Homework deadline approaching
-        ResultAvailable = 2,     // Student: Your result is ready
-        SubmissionReceived = 3,  // Teacher: Student submitted answers
-        AllSubmissionsIn = 4,    // Teacher: All students submitted
-        DeadlinePassed = 5,      // Teacher/Student: Deadline passed
-        SystemAlert = 6          // Admin: System notifications
+        TestCreated = 0,         // Student: New test created by teacher (with test key)
+        AssignmentReceived = 1,  // Student: You have new homework
+        AssignmentReminder = 2,  // Student: Homework deadline approaching
+        ResultAvailable = 3,     // Student: Your result is ready
+        SubmissionReceived = 4,  // Teacher: Student submitted answers
+        AllSubmissionsIn = 5,    // Teacher: All students submitted
+        DeadlinePassed = 6,      // Teacher/Student: Deadline passed
+        SystemAlert = 7          // Admin: System notifications
     }
 }

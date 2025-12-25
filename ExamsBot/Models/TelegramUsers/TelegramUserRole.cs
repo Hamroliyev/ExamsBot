@@ -8,6 +8,7 @@ namespace ExamsBot.Models.TelegramUsers
     {
         Student = 0,
         Teacher = 1,
-        Admin = 2
+        Admin = 2,
+        Parent = 3
     }
 }

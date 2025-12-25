@@ -3,6 +3,7 @@
 // -------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using ExamsBot.Models.Assignments;
@@ -24,37 +25,52 @@ namespace ExamsBot.Models.Results
         [Required]
         public Guid ExamId { get; set; }
 
-        // Student's submitted answers in format: "1a2b3c4d..."
-        [Required]
+        // Student's submitted answers in format: "1a2b3c4d..." (from best attempt or latest)
         [MaxLength(500)]
         public string StudentAnswers { get; set; }
 
-        // Scoring details
+        // Number of attempts made by student (1-3)
+        public int AttemptsCount { get; set; }
+
+        // Scoring details (moderated/averaged from all attempts)
         public int CorrectCount { get; set; }
         public int WrongCount { get; set; }
         public int TotalQuestions { get; set; }
 
-        // Score as percentage (0-100)
+        // Moderated score: Average of all attempts or best attempt (configurable)
         [Range(0, 100)]
         public decimal ScorePercentage { get; set; }
 
-        // Grade (A+, A, B, C, D, F)
+        // Best attempt score (highest score from all attempts)
+        [Range(0, 100)]
+        public decimal BestAttemptScore { get; set; }
+
+        // Average score across all attempts
+        [Range(0, 100)]
+        public decimal AverageAttemptScore { get; set; }
+
+        // Grade (A+, A, B, C, D, F) - based on moderated score
         [MaxLength(5)]
         public string Grade { get; set; }
 
         public bool IsPassed { get; set; }
 
-        // Timing information
+        // Timing information (from best/latest attempt)
         public DateTime SubmittedAt { get; set; }
+        public DateTime? FirstAttemptAt { get; set; }
+        public DateTime? LastAttemptAt { get; set; }
         public TimeSpan? TimeTaken { get; set; }
 
         // Is this submitted after deadline?
         public bool IsLateSubmission { get; set; }
 
-        // Detailed answer breakdown (JSON format)
+        // Detailed answer breakdown (JSON format) - from best attempt
         // [{"q":1,"student":"a","correct":"b","isCorrect":false}, ...]
         [MaxLength(2000)]
         public string AnswerDetails { get; set; }
+
+        // All submission attempts (1-3 attempts)
+        public ICollection<SubmissionAttempt> SubmissionAttempts { get; set; } = new List<SubmissionAttempt>();
 
         // Teacher feedback (optional)
         [MaxLength(1000)]
