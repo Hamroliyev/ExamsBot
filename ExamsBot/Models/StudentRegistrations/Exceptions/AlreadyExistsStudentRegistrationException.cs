@@ -1,0 +1,15 @@
+﻿// ---------------------------------------------------------------
+// Copyright (c) Coalition of the Good-Hearted Engineers
+// FREE TO USE AS LONG AS SOFTWARE FUNDS ARE DONATED TO THE POOR
+// ---------------------------------------------------------------
+
+using System;
+
+namespace ExamsBot.Models.StudentRegistrations.Exceptions
+{
+    public class AlreadyExistsStudentRegistrationException : Exception
+    {
+        public AlreadyExistsStudentRegistrationException(Exception innerException)
+            : base(message: "Student registration with the same id already exists.", innerException) { }
+    }
+}

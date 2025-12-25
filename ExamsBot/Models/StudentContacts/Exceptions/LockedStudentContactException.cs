@@ -1,0 +1,15 @@
+﻿// ---------------------------------------------------------------
+// Copyright (c) Coalition of the Good-Hearted Engineers
+// FREE TO USE AS LONG AS SOFTWARE FUNDS ARE DONATED TO THE POOR
+// ---------------------------------------------------------------
+
+using System;
+
+namespace ExamsBot.Models.StudentContacts.Exceptions
+{
+    public class LockedStudentContactException : Exception
+    {
+        public LockedStudentContactException(Exception innerException)
+            : base(message: "Locked student contact record exception, please try again later.", innerException) { }
+    }
+}

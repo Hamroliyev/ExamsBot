@@ -1,0 +1,15 @@
+﻿// ---------------------------------------------------------------
+// Copyright (c) Coalition of the Good-Hearted Engineers
+// FREE TO USE AS LONG AS SOFTWARE FUNDS ARE DONATED TO THE POOR
+// ---------------------------------------------------------------
+
+using System;
+
+namespace ExamsBot.Models.TeacherContacts.Exceptions
+{
+    public class AlreadyExistsTeacherContactException : Exception
+    {
+        public AlreadyExistsTeacherContactException(Exception innerException)
+            : base(message: "Teacher contact with the same id already exists.", innerException) { }
+    }
+}

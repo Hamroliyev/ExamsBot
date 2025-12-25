@@ -1,0 +1,16 @@
+﻿// ---------------------------------------------------------------
+// Copyright (c) Coalition of the Good-Hearted Engineers
+// FREE TO USE AS LONG AS SOFTWARE FUNDS ARE DONATED TO THE POOR
+// ---------------------------------------------------------------
+
+using System;
+
+namespace ExamsBot.Models.TeacherContacts.Exceptions
+{
+    public class TeacherContactValidationException : Exception
+    {
+        public TeacherContactValidationException(Exception innerException)
+            : base(message: "Invalid input, contact support.", innerException)
+        { }
+    }
+}
