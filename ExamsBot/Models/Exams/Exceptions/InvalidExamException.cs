@@ -3,14 +3,16 @@
 // FREE TO USE AS LONG AS SOFTWARE FUNDS ARE DONATED TO THE POOR
 // ---------------------------------------------------------------
 
-using Xeptions;
+using System;
 
 namespace ExamsBot.Models.Exams.Exceptions
 {
-    public class InvalidExamException : Xeption
+    public class InvalidExamException : Exception
     {
-        public InvalidExamException()
-            : base(message: "Invalid exam. Please fix the errors and try again.")
+        public InvalidExamException(string parameterName, object parameterValue)
+            : base(message: $"Invalid exam, " +
+                  $"parameter name: {parameterName}, " +
+                  $"parameter value: {parameterValue}.")
         { }
     }
 }

@@ -2,35 +2,73 @@
 // FREE TO USE FOR THE WORLD
 // -------------------------------------------------------
 
+using ExamsBot.Brokers.DateTimes;
+using ExamsBot.Brokers.Loggings;
 using ExamsBot.Brokers.Storages;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using System;
 using ExamsBot.Models.Exams;
 
 namespace ExamsBot.Services.Foundations.Exams
 {
-    public class ExamService : IExamService
+    public partial class ExamService : IExamService
     {
         private readonly IStorageBroker storageBroker;
+        private readonly IDateTimeBroker dateTimeBroker;
+        private readonly ILoggingBroker loggingBroker;
 
-        public ExamService(IStorageBroker storageBroker)
+        public ExamService(
+            IStorageBroker storageBroker,
+            IDateTimeBroker dateTimeBroker,
+            ILoggingBroker loggingBroker)
         {
             this.storageBroker = storageBroker;
+            this.dateTimeBroker = dateTimeBroker;
+            this.loggingBroker = loggingBroker;
         }
-        public async ValueTask<Exam> AddExamAsync(Exam exam) =>
-            await storageBroker.InsertExamAsync(exam);
+
+        public ValueTask<Exam> AddExamAsync(Exam exam) =>
+            TryCatch(async () =>
+            {
+                ValidateExamOnCreate(exam);
+
+                return await this.storageBroker.InsertExamAsync(exam);
+            });
 
         public IQueryable<Exam> RetrieveAllExams() =>
-            storageBroker.SelectAllExams();
+            TryCatch(() => this.storageBroker.SelectAllExams());
 
         public ValueTask<Exam> RetrieveExamByIdAsync(Guid examId) =>
-            storageBroker.SelectExamByIdAsync(examId);
+            TryCatch(async () =>
+            {
+                ValidateExamIdIsNull(examId);
+                Exam storageExam = await this.storageBroker.SelectExamByIdAsync(examId);
+                ValidateStorageExam(storageExam, examId);
+
+                return storageExam;
+            });
 
         public ValueTask<Exam> ModifyExamAsync(Exam exam) =>
-            storageBroker.UpdateExamAsync(exam);
+            TryCatch(async () =>
+            {
+                ValidateExamOnModify(exam);
+                Exam maybeExam = await this.storageBroker.SelectExamByIdAsync(exam.ExamId);
+                ValidateStorageExam(maybeExam, exam.ExamId);
+                ValidateAgainstStorageExamOnModify(inputExam: exam, storageExam: maybeExam);
 
-        public async ValueTask<Exam> RemoveExamAsync(Exam exam) =>
-            await storageBroker.DeleteExamAsync(exam);
+                return await this.storageBroker.UpdateExamAsync(exam);
+            });
+
+        public ValueTask<Exam> RemoveExamAsync(Exam exam) =>
+            TryCatch(async () =>
+            {
+                ValidateExamIsNull(exam);
+                ValidateExamIdIsNull(exam.ExamId);
+                Exam maybeExam = await this.storageBroker.SelectExamByIdAsync(exam.ExamId);
+                ValidateStorageExam(maybeExam, exam.ExamId);
+
+                return await this.storageBroker.DeleteExamAsync(maybeExam);
+            });
     }
 }

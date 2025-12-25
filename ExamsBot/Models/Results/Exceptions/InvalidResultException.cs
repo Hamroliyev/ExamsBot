@@ -2,13 +2,16 @@
 // FREE TO USE FOR THE WORLD
 // -------------------------------------------------------
 
-using Xeptions;
+using System;
 
 namespace ExamsBot.Models.Results.Exceptions
 {
-    public class InvalidResultException : Xeption
+    public class InvalidResultException : Exception
     {
-        public InvalidResultException()
-            : base(message: "Invalid result. Please fix the errors and try again.") { }
+        public InvalidResultException(string parameterName, object parameterValue)
+            : base(message: $"Invalid result, " +
+                  $"parameter name: {parameterName}, " +
+                  $"parameter value: {parameterValue}.")
+        { }
     }
 }

@@ -2,42 +2,81 @@
 // FREE TO USE FOR THE WORLD
 // -------------------------------------------------------
 
+using ExamsBot.Brokers.DateTimes;
+using ExamsBot.Brokers.Loggings;
 using ExamsBot.Brokers.Storages;
-using ExamsBot.Models.Results;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using ExamsBot.Models.Results;
 
 namespace ExamsBot.Services.Foundations.Results
 {
-    public class ResultService : IResultService
+    public partial class ResultService : IResultService
     {
         private readonly IStorageBroker storageBroker;
+        private readonly IDateTimeBroker dateTimeBroker;
+        private readonly ILoggingBroker loggingBroker;
 
-        public ResultService(IStorageBroker storageBroker)
+        public ResultService(
+            IStorageBroker storageBroker,
+            IDateTimeBroker dateTimeBroker,
+            ILoggingBroker loggingBroker)
         {
             this.storageBroker = storageBroker;
+            this.dateTimeBroker = dateTimeBroker;
+            this.loggingBroker = loggingBroker;
         }
 
-        public async ValueTask<Result> AddResultAsync(Result result) =>
-            await this.storageBroker.InsertResultAsync(result);
+        public ValueTask<Result> AddResultAsync(Result result) =>
+            TryCatch(async () =>
+            {
+                ValidateResultOnCreate(result);
+
+                return await this.storageBroker.InsertResultAsync(result);
+            });
 
         public IQueryable<Result> RetrieveAllResults() =>
-            this.storageBroker.SelectAllResults();
+            TryCatch(() => this.storageBroker.SelectAllResults());
 
-        public async ValueTask<Result> RetrieveResultByIdAsync(Guid resultId) =>
-            await this.storageBroker.SelectResultByIdAsync(resultId);
+        public ValueTask<Result> RetrieveResultByIdAsync(Guid resultId) =>
+            TryCatch(async () =>
+            {
+                ValidateResultIdIsNull(resultId);
+                Result storageResult = await this.storageBroker.SelectResultByIdAsync(resultId);
+                ValidateStorageResult(storageResult, resultId);
+
+                return storageResult;
+            });
 
         public IQueryable<Result> RetrieveResultsByExamIdAsync(Guid examId) =>
-            this.storageBroker.SelectResultsByExamIdAsync(examId);
+            TryCatch(() => this.storageBroker.SelectAllResults()
+                .Where(result => result.ExamId == examId));
 
         public IQueryable<Result> RetrieveResultsByStudentIdAsync(Guid studentId) =>
-            this.storageBroker.SelectResultsByStudentIdAsync(studentId);
+            TryCatch(() => this.storageBroker.SelectAllResults()
+                .Where(result => result.StudentId == studentId));
 
-        public async ValueTask<Result> ModifyResultAsync(Result result) =>
-            await this.storageBroker.UpdateResultAsync(result);
+        public ValueTask<Result> ModifyResultAsync(Result result) =>
+            TryCatch(async () =>
+            {
+                ValidateResultOnModify(result);
+                Result maybeResult = await this.storageBroker.SelectResultByIdAsync(result.ResultId);
+                ValidateStorageResult(maybeResult, result.ResultId);
+                ValidateAgainstStorageResultOnModify(inputResult: result, storageResult: maybeResult);
 
-        public async ValueTask<Result> RemoveResultAsync(Result result) =>
-            await this.storageBroker.DeleteResultAsync(result);
+                return await this.storageBroker.UpdateResultAsync(result);
+            });
+
+        public ValueTask<Result> RemoveResultAsync(Result result) =>
+            TryCatch(async () =>
+            {
+                ValidateResultIsNull(result);
+                ValidateResultIdIsNull(result.ResultId);
+                Result maybeResult = await this.storageBroker.SelectResultByIdAsync(result.ResultId);
+                ValidateStorageResult(maybeResult, result.ResultId);
+
+                return await this.storageBroker.DeleteResultAsync(maybeResult);
+            });
     }
 }
